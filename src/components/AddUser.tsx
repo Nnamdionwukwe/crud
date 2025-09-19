@@ -53,7 +53,7 @@ export default function AddUser({
     if (!username) return alert("Please enter a username.");
     // Handle form submission logic here
     const newUser = {
-      id: Date.now() + 0, // Generate a unique ID for demonstration
+      id: Date.now() + 1, // Generate a unique ID for demonstration
       username,
       email,
       mobile,

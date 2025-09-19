@@ -1,0 +1,36 @@
+.user {
+  background-color: blue;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.entries {
+  border: 1px solid #ccc;
+  padding: 0.1em 0.6em;
+}
+
+.modalContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.formGroup {
+  display: flex;
+  align-items: center;
+}
+
+.formFotter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}

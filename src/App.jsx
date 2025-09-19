@@ -9,7 +9,7 @@ const userData = [
   {
     id: Date.now() + 0,
     username: "Nnamdi Michael",
-    email: "nnamdimichael@gmail.com",
+    email: "nnamdi@gmail.com",
     mobile: "08037748573",
     city: "Abuja",
   },

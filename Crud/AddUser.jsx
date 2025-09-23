@@ -1,19 +1,19 @@
 import { useState } from "react";
 import styles from "./AddUser.module.css";
 
-type AddUserProps = {
-  // id: string;
-  // setId: React.Dispatch<React.SetStateAction<string>>;
-  username: string;
-  setUsername: React.Dispatch<React.SetStateAction<string>>;
-  email: string;
-  setEmail: React.Dispatch<React.SetStateAction<string>>;
-  mobile: string;
-  setMobile: React.Dispatch<React.SetStateAction<string>>;
-  city: string;
-  setCity: React.Dispatch<React.SetStateAction<string>>;
-  setUsers: React.Dispatch<React.SetStateAction<string>>;
-};
+// type AddUserProps = {
+//   // id: string;
+//   // setId: React.Dispatch<React.SetStateAction<string>>;
+//   username: string;
+//   setUsername: React.Dispatch<React.SetStateAction<string>>;
+//   email: string;
+//   setEmail: React.Dispatch<React.SetStateAction<string>>;
+//   mobile: string;
+//   setMobile: React.Dispatch<React.SetStateAction<string>>;
+//   city: string;
+//   setCity: React.Dispatch<React.SetStateAction<string>>;
+//   setUsers: React.Dispatch<React.SetStateAction<string>>;
+// };
 
 export default function AddUser({
   username,
@@ -24,16 +24,16 @@ export default function AddUser({
   setMobile,
   city,
   setCity,
-  setUsers,
-}: AddUserProps) {
+  handleAddUser,
+}) {
   const [open, setOpen] = useState(false);
 
-  type User = {
-    username: string;
-    email: string;
-    mobile: string;
-    city: string;
-  };
+  // type User = {
+  //   username: string;
+  //   email: string;
+  //   mobile: string;
+  //   city: string;
+  // };
 
   function handleOpen() {
     setOpen(true);
@@ -43,17 +43,13 @@ export default function AddUser({
     setOpen(false);
   }
 
-  function handleAddUser(newUser: User) {
-    setUsers((user) => [...user, newUser]);
-  }
-
-  function handleSubmit(e: React.FormEvent) {
+  function handleSubmit(e) {
     e.preventDefault();
 
     if (!username) return alert("Please enter a username.");
     // Handle form submission logic here
     const newUser = {
-      id: Date.now() + 1, // Generate a unique ID for demonstration
+      id: Date.now(), // Generate a unique ID for demonstration
       username,
       email,
       mobile,
@@ -61,6 +57,8 @@ export default function AddUser({
     };
 
     handleAddUser(newUser);
+    handleAddUser(handleAddUser);
+
     console.log({ username, email, mobile, city });
     // Reset form fields
     setUsername("");

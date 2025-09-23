@@ -1,58 +1,64 @@
-import { useState } from "react";
-import AddUser from "./components/AddUser";
-import Fotter from "./components/Fotter";
-import Grid from "./components/Grid";
-import Header from "./components/Header";
-import styles from "./Main.module.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Pricing from "./pages/Pricing";
+import PageNotFound from "./pages/PageNotFound";
+import AppLayout from "./pages/AppLayout";
+import Product from "./pages/Product";
+import Homepage from "./pages/Homepage";
+import Login from "./pages/Login";
+import CityList from "./components/CityList";
+import { useEffect, useState } from "react";
 
-const userData = [
-  {
-    id: Date.now() + 0,
-    username: "Nnamdi Michael",
-    email: "nnamdi@gmail.com",
-    mobile: "08037748573",
-    city: "Abuja",
-  },
+const BASE_URL = "http://localhost:9000";
 
-  {
-    id: Date.now() + 1,
-    username: "Nnamdi",
-    email: "nnam",
-    mobile: "099877655",
-    city: "New",
-  },
-];
+function App() {
+  const [cities, setCities] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-export default function App() {
-  // const [user, setUser] = useState<User[]>([]);
-  const [users, setUsers] = useState(userData);
+  useEffect(function () {
+    async function fetchCities() {
+      try {
+        setIsLoading(true);
+        const res = await fetch(`${BASE_URL}/cities`);
+        const data = await res.json();
+        setCities(data);
+      } catch {
+        alert("There was an error loading data...");
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchCities();
+  }, []);
 
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [mobile, setMobile] = useState("");
-  const [city, setCity] = useState("");
+  // console.log(cities);
 
   return (
-    <div className={styles.app}>
-      <div className={styles.main}>
-        <Header />
-      </div>
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<Homepage />} />
+        <Route path="/products" element={<Product />} />
+        <Route path="/pricing" element={<Pricing />} />
 
-      <AddUser
-        username={username}
-        setUsername={setUsername}
-        email={email}
-        setEmail={setEmail}
-        mobile={mobile}
-        setMobile={setMobile}
-        city={city}
-        setCity={setCity}
-        setUsers={setUsers}
-      />
+        <Route path="applayout" element={<AppLayout />}>
+          <Route
+            index
+            element={<CityList cities={cities} isLoading={isLoading} />}
+          />
 
-      <Grid users={users} />
+          <Route
+            path="cities"
+            element={<CityList cities={cities} isLoading={isLoading} />}
+          />
+          <Route path="countries" element={<p>Countries</p>} />
+          <Route path="form" element={<p>Form</p>} />
+        </Route>
 
-      <Fotter />
-    </div>
+        <Route path="login" element={<Login />} />
+
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
+
+export default App;

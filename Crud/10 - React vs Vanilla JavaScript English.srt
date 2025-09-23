@@ -1,0 +1,596 @@
+﻿1
+00:00:01,020 --> 00:00:02,730
+‫Now, to get a first feeling
+
+2
+00:00:02,730 --> 00:00:07,350
+‫for how React keeps the user interface in sync with state,
+
+3
+00:00:07,350 --> 00:00:10,410
+‫let's quickly compare the advice app that we built
+
+4
+00:00:10,410 --> 00:00:11,790
+‫in the first section,
+
+5
+00:00:11,790 --> 00:00:14,400
+‫with a Vanilla JavaScript implementation
+
+6
+00:00:14,400 --> 00:00:16,323
+‫of the same application.
+
+7
+00:00:17,520 --> 00:00:19,920
+‫So here I have them open side by side,
+
+8
+00:00:19,920 --> 00:00:21,720
+‫and if you want to follow along,
+
+9
+00:00:21,720 --> 00:00:26,010
+‫I actually added this vanillajavascript.html file
+
+10
+00:00:26,010 --> 00:00:29,160
+‫right into the same code sandbox
+
+11
+00:00:29,160 --> 00:00:32,853
+‫that we used to build this first advice app.
+
+12
+00:00:33,690 --> 00:00:35,460
+‫So right here in the source folder,
+
+13
+00:00:35,460 --> 00:00:37,740
+‫there is now this vanilla.js,
+
+14
+00:00:37,740 --> 00:00:41,280
+‫or actually vanilla-.html file.
+
+15
+00:00:41,280 --> 00:00:44,130
+‫And again, I will post the link
+
+16
+00:00:44,130 --> 00:00:49,110
+‫to this code sandbox into this lecture, all right?
+
+17
+00:00:49,110 --> 00:00:52,890
+‫So in case you don't really remember what we did back here,
+
+18
+00:00:52,890 --> 00:00:54,390
+‫you can always pause the video
+
+19
+00:00:54,390 --> 00:00:58,500
+‫and just analyze this code here for a second for yourself.
+
+20
+00:00:58,500 --> 00:01:00,570
+‫So what I want to do now again,
+
+21
+00:01:00,570 --> 00:01:03,450
+‫is to just quickly compare the React code
+
+22
+00:01:03,450 --> 00:01:06,963
+‫that we wrote before with this Vanilla JavaScript.
+
+23
+00:01:07,980 --> 00:01:10,920
+‫Now, ironically, this Vanilla JavaScript implementation
+
+24
+00:01:10,920 --> 00:01:13,770
+‫is actually in an HTML file.
+
+25
+00:01:13,770 --> 00:01:16,680
+‫So I placed all the HTML files
+
+26
+00:01:16,680 --> 00:01:20,940
+‫and then also the JavaScript right into one HTML file,
+
+27
+00:01:20,940 --> 00:01:23,550
+‫just to keep it all in the same place.
+
+28
+00:01:23,550 --> 00:01:26,640
+‫But already this shows us the very first difference
+
+29
+00:01:26,640 --> 00:01:28,710
+‫between the two philosophies.
+
+30
+00:01:28,710 --> 00:01:30,210
+‫So here,
+
+31
+00:01:30,210 --> 00:01:33,660
+‫everything is basically done in JavaScript,
+
+32
+00:01:33,660 --> 00:01:36,360
+‫so even the JSX.
+
+33
+00:01:36,360 --> 00:01:39,660
+‫So basically this kind of HTML here
+
+34
+00:01:39,660 --> 00:01:42,150
+‫is written inside of JavaScript.
+
+35
+00:01:42,150 --> 00:01:45,030
+‫So JavaScript is taking care of everything.
+
+36
+00:01:45,030 --> 00:01:47,580
+‫While here, in the Vanilla JavaScript,
+
+37
+00:01:47,580 --> 00:01:50,040
+‫HTML is still in charge.
+
+38
+00:01:50,040 --> 00:01:53,340
+‫So we have an HTML file, and that HTML file
+
+39
+00:01:53,340 --> 00:01:56,760
+‫is then including the JavaScript into it.
+
+40
+00:01:56,760 --> 00:02:00,060
+‫So it's basically the other way around, right?
+
+41
+00:02:00,060 --> 00:02:02,310
+‫So right inside this HTML,
+
+42
+00:02:02,310 --> 00:02:06,060
+‫we still have our same H1 here, for the advice.
+
+43
+00:02:06,060 --> 00:02:08,040
+‫The only difference is that it's empty.
+
+44
+00:02:08,040 --> 00:02:12,240
+‫While here, we include that advice state,
+
+45
+00:02:12,240 --> 00:02:16,290
+‫then we have the button and the paragraph for the message.
+
+46
+00:02:16,290 --> 00:02:18,870
+‫Then inside of the script,
+
+47
+00:02:18,870 --> 00:02:21,570
+‫so inside of the JavaScript part,
+
+48
+00:02:21,570 --> 00:02:22,560
+‫we need to, of course,
+
+49
+00:02:22,560 --> 00:02:26,490
+‫then manually select all of these three DOM elements.
+
+50
+00:02:26,490 --> 00:02:28,710
+‫So I selected the advice element,
+
+51
+00:02:28,710 --> 00:02:33,390
+‫the button and also this one here for the count.
+
+52
+00:02:33,390 --> 00:02:34,500
+‫And so for that,
+
+53
+00:02:34,500 --> 00:02:37,410
+‫all of them needed to have this class,
+
+54
+00:02:37,410 --> 00:02:40,110
+‫while here, well, we don't need any of that.
+
+55
+00:02:40,110 --> 00:02:43,410
+‫There is no class here in any of these elements.
+
+56
+00:02:43,410 --> 00:02:46,923
+‫And also we are nowhere manually selecting them, right?
+
+57
+00:02:48,960 --> 00:02:51,750
+‫So then next we have this get advice function,
+
+58
+00:02:51,750 --> 00:02:54,270
+‫which we will get to in a minute,
+
+59
+00:02:54,270 --> 00:02:57,990
+‫and then we still basically have two pieces
+
+60
+00:02:57,990 --> 00:03:00,150
+‫which we can call state.
+
+61
+00:03:00,150 --> 00:03:03,330
+‫So we have a count value, which starts at zero,
+
+62
+00:03:03,330 --> 00:03:05,070
+‫and an advice.
+
+63
+00:03:05,070 --> 00:03:08,463
+‫And so these are exactly the same as here, these states.
+
+64
+00:03:09,750 --> 00:03:13,833
+‫Then finally, in the end, we also attach an event listener.
+
+65
+00:03:14,760 --> 00:03:17,970
+‫So this get advice function right here.
+
+66
+00:03:17,970 --> 00:03:20,160
+‫So we attach that to the button
+
+67
+00:03:20,160 --> 00:03:22,290
+‫that we selected here manually before,
+
+68
+00:03:22,290 --> 00:03:23,940
+‫while here, in the JSX,
+
+69
+00:03:23,940 --> 00:03:27,960
+‫we do it using this on-click attribute right here.
+
+70
+00:03:27,960 --> 00:03:30,930
+‫So right off the bat you see immediately
+
+71
+00:03:30,930 --> 00:03:34,500
+‫that we need to do a lot of things manually over here,
+
+72
+00:03:34,500 --> 00:03:36,960
+‫that here, happen more automatically.
+
+73
+00:03:36,960 --> 00:03:39,390
+‫And again, that here it is really the JavaScript
+
+74
+00:03:39,390 --> 00:03:41,550
+‫that is in charge of everything,
+
+75
+00:03:41,550 --> 00:03:44,100
+‫while here, it is still the HTML.
+
+76
+00:03:44,100 --> 00:03:45,930
+‫But anyway, let's now get here
+
+77
+00:03:45,930 --> 00:03:48,030
+‫to the heart of the application,
+
+78
+00:03:48,030 --> 00:03:51,030
+‫which is really this get advice function.
+
+79
+00:03:51,030 --> 00:03:54,120
+‫So just like here, in our React implementation,
+
+80
+00:03:54,120 --> 00:03:56,610
+‫we start by getting the data.
+
+81
+00:03:56,610 --> 00:04:00,840
+‫And then we update the service, or actually the advice,
+
+82
+00:04:00,840 --> 00:04:05,730
+‫and the count values that we defined down here, right?
+
+83
+00:04:05,730 --> 00:04:07,560
+‫So we're updating the count here,
+
+84
+00:04:07,560 --> 00:04:10,170
+‫and the advice right here.
+
+85
+00:04:10,170 --> 00:04:12,630
+‫However, simply updating these two values
+
+86
+00:04:12,630 --> 00:04:14,760
+‫will, of course, do nothing.
+
+87
+00:04:14,760 --> 00:04:17,640
+‫So the user interface will not change
+
+88
+00:04:17,640 --> 00:04:20,820
+‫by us updating these JavaScript values.
+
+89
+00:04:20,820 --> 00:04:23,550
+‫While here, in this React example,
+
+90
+00:04:23,550 --> 00:04:27,720
+‫as soon as we update the advice and the count state,
+
+91
+00:04:27,720 --> 00:04:30,780
+‫automatically, React kept the user interface
+
+92
+00:04:30,780 --> 00:04:33,210
+‫in sync with these two values.
+
+93
+00:04:33,210 --> 00:04:36,240
+‫And so that's basically the big message that we got
+
+94
+00:04:36,240 --> 00:04:38,250
+‫from the previous lecture, right?
+
+95
+00:04:38,250 --> 00:04:41,730
+‫So that React and all these other front-end frameworks
+
+96
+00:04:41,730 --> 00:04:45,420
+‫are really good at keeping the data automatically in sync
+
+97
+00:04:45,420 --> 00:04:47,250
+‫with the user interface.
+
+98
+00:04:47,250 --> 00:04:49,950
+‫And again, that's exactly what's happening here.
+
+99
+00:04:49,950 --> 00:04:53,820
+‫All we care about here is to set the new data,
+
+100
+00:04:53,820 --> 00:04:55,320
+‫and that's all we do.
+
+101
+00:04:55,320 --> 00:04:58,140
+‫React is the one who automatically takes care
+
+102
+00:04:58,140 --> 00:05:00,210
+‫of updating the user interface
+
+103
+00:05:00,210 --> 00:05:02,253
+‫without us having to do anything.
+
+104
+00:05:03,120 --> 00:05:04,470
+‫But here, of course,
+
+105
+00:05:04,470 --> 00:05:07,770
+‫in the Vanilla JavaScript implementation,
+
+106
+00:05:07,770 --> 00:05:09,780
+‫we need to manually do that.
+
+107
+00:05:09,780 --> 00:05:14,010
+‫So we need to manually keep the data in sync with the UI.
+
+108
+00:05:14,010 --> 00:05:15,540
+‫So we have the data here,
+
+109
+00:05:15,540 --> 00:05:19,980
+‫and then we use that data to update the DOM manually.
+
+110
+00:05:19,980 --> 00:05:21,930
+‫So we come here to our count element,
+
+111
+00:05:21,930 --> 00:05:23,400
+‫and the advice element
+
+112
+00:05:23,400 --> 00:05:26,220
+‫that we also manually selected previously,
+
+113
+00:05:26,220 --> 00:05:28,980
+‫and we change their text content property,
+
+114
+00:05:28,980 --> 00:05:31,890
+‫which is just normal DOM manipulation.
+
+115
+00:05:31,890 --> 00:05:34,470
+‫So then here we set this one to the count variable,
+
+116
+00:05:34,470 --> 00:05:37,530
+‫and this one to the advice variable.
+
+117
+00:05:37,530 --> 00:05:40,500
+‫And this really is a fundamental difference
+
+118
+00:05:40,500 --> 00:05:41,940
+‫and a fundamental shift
+
+119
+00:05:41,940 --> 00:05:45,150
+‫in how we build front-end applications.
+
+120
+00:05:45,150 --> 00:05:48,930
+‫Now, you might argue that in this very small example,
+
+121
+00:05:48,930 --> 00:05:50,970
+‫doing this is not a lot of work,
+
+122
+00:05:50,970 --> 00:05:55,050
+‫and maybe it might not even be necessary to learn React.
+
+123
+00:05:55,050 --> 00:05:56,550
+‫And I would agree with you
+
+124
+00:05:56,550 --> 00:05:59,490
+‫that we would, of course, not need React
+
+125
+00:05:59,490 --> 00:06:03,420
+‫to build something really small and simple such as this.
+
+126
+00:06:03,420 --> 00:06:06,660
+‫But as soon as we get just a little bit bigger than this,
+
+127
+00:06:06,660 --> 00:06:09,510
+‫it starts kind of getting out of control.
+
+128
+00:06:09,510 --> 00:06:13,260
+‫So we would have to select tons of elements
+
+129
+00:06:13,260 --> 00:06:17,160
+‫and we would really need to create a lot of extra code
+
+130
+00:06:17,160 --> 00:06:19,200
+‫that, with React, we don't have to,
+
+131
+00:06:19,200 --> 00:06:21,870
+‫again, because it automatically takes care
+
+132
+00:06:21,870 --> 00:06:25,710
+‫of keeping the data in sync with the user interface.
+
+133
+00:06:25,710 --> 00:06:26,940
+‫That's really the main thing
+
+134
+00:06:26,940 --> 00:06:29,550
+‫that I want you to keep in mind from this lecture
+
+135
+00:06:29,550 --> 00:06:31,890
+‫and from the previous one.
+
+136
+00:06:31,890 --> 00:06:32,723
+‫So, of course,
+
+137
+00:06:32,723 --> 00:06:35,310
+‫feel free to analyze all the differences
+
+138
+00:06:35,310 --> 00:06:37,170
+‫that exist here in this code,
+
+139
+00:06:37,170 --> 00:06:39,060
+‫because just with this,
+
+140
+00:06:39,060 --> 00:06:42,900
+‫you can really see the two different philosophies at work.
+
+141
+00:06:42,900 --> 00:06:46,680
+‫I'm not going to go even deeper into this at this point,
+
+142
+00:06:46,680 --> 00:06:48,510
+‫but it would be pretty interesting
+
+143
+00:06:48,510 --> 00:06:51,210
+‫if you take a few minutes and really compare
+
+144
+00:06:51,210 --> 00:06:53,430
+‫what's going on on this side here,
+
+145
+00:06:53,430 --> 00:06:55,620
+‫and on the React implementation.
+
+146
+00:06:55,620 --> 00:06:57,480
+‫And so once you're done doing that,
+
+147
+00:06:57,480 --> 00:06:59,340
+‫it's now time to finally learn
+
+148
+00:06:59,340 --> 00:07:03,000
+‫what React actually is in a bit more detail.
+
+149
+00:07:03,000 --> 00:07:05,913
+‫So hopefully, I see you right in the next lecture soon.
+
